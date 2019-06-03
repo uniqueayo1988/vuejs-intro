@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Tutorials</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #canvas {
+      width: 600px;
+      padding: 200px 20px;
+      text-align: center;
+      border: 1px solid #333;
+    }
+  </style>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="vue-app">
+    <h1>Events</h1>
+    <button v-on:click="age++">Add a year</button>
+    <button v-on:click="subt(1)">Subtract a year</button>
+    <button v-on:dblclick.once="subt(10)">Subtract 10 years - dblclick</button>
+    <p>My age is {{ age }}</p>
+    <a @click.prevent="click" href="http://www.yahoo.com">YAHOO</a><br><hr>
+    <h2>KEYBOARD EVENTS</h2>
+    <label for="">Name: {{ name }}</label>
+    <input type="text" v-model="name" placeholder="Name"><br>
+    <input type="text" v-on:keyup.enter="logName" placeholder="Type Name - Hit enter">
+    <label for="">Age:</label>
+    <input type="text" v-on:keyup.alt.enter="logAge" placeholder="Type age - Hit alt/option enter">
+
+    <div id="canvas" v-on:mousemove="updateXY">x:{{ x }} y:{{ y }}</div>
+  </div>
+  <script>
+    new Vue({
+      el: '#vue-app',
+      data: {
+        name: '',
+        age: 25,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        subt: function(sub) {
+          this.age -= sub;
+        },
+        updateXY: function() {
+          this.x = event.offsetX;
+          this.y = event.offsetY;
+        },
+        click: function() {
+          alert('hi');
+        },
+        logName: function() {
+          console.log('your name')
+        },
+        logAge: function() {
+          console.log('your age')
+        }
+      }
+    });
+  </script>
+</body>
+</html>
