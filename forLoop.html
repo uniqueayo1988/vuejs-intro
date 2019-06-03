@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Tutorials</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+  </style>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="vue-app">
+    <h1>V-for Looping</h1>
+    <ul>
+      <li v-for="character in characters">{{character}}</li>
+    </ul>
+    <ul>
+      <li v-for="(ninja, index) in ninjas">{{index}} {{ninja.name}} is {{ninja.age}} years old</li>
+    </ul>
+    <hr>
+    <h2>Having a template in lieu of Div</h2>
+    <template v-for="(ninja, index) in ninjas">
+      <h4>{{index}}. {{ninja.name}}</h4>
+      <span>Age is - {{ninja.age}}</span>
+    </template>
+    <h2>Looping thru objects in the Array</h2>
+    <template v-for="ninja in ninjas">
+      <div v-for="(val, key) in ninja">
+        <p>{{key}} - {{val}}</p>
+      </div>
+    </template>
+  </div>
+  <script>
+    new Vue({
+      el: '#vue-app',
+      data: {
+        name: 'jack',
+        characters: ['Mario', 'Luigi', 'Yoshi', 'Bowser'],
+        ninjas: [
+          {name: 'Ryu', age: 25},
+          {name: 'Yoshi', age: 35},
+          {name: 'Ken', age: 55},
+        ],
+      },
+    });
+  </script>
+</body>
+</html>
