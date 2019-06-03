@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Tutorials</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #bag {
+      width: 350px;
+      height: 400px;
+      margin: 0 auto;
+      background: url(../assets/bag.png) center no-repeat;
+      background-size: 90%;
+    }
+
+    #bag.burst {
+      background: url(../assets/punchBag.png) center no-repeat;
+      background-size: 90%;
+    }
+
+    #bag-health {
+      width: 350px;
+      border: 2px solid #000;
+      margin: 0 auto 20px auto;      
+    }
+
+    #bag-health div{
+      height: 35px;
+      background: crimson;     
+    }
+  
+    #controls {
+      width: 120px;
+      margin: 0 auto;
+    }
+  </style>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="vue-app">
+    <!-- bag image -->
+    <div id="bag" v-bind:class="{burst: ended}"></div>
+
+    <!-- bag health -->
+    <div id="bag-health">
+      <div v-bind:style="{width: health + '%'}"></div>
+    </div>
+
+    <div style="text-align: center">{{count}}</div>
+
+    <!-- game controls -->
+    <div id="controls">
+      <button v-on:click="punch" v-show="!ended">Punch</button>
+      <button v-on:click="restart">Restart</button>
+    </div>
+
+  </div>
+  <script>
+    new Vue({
+      el: '#vue-app',
+      data: {
+        health: 100,
+        ended: false,
+        count: 0
+      },
+      methods: {
+        punch: function() {
+          this.count += 1;
+          this.health -= 10;
+          if (this.health <= 0) {
+            this.ended = true;
+          }
+        },
+        restart: function() {
+          this.count = 0;
+          this.health = 100;
+          this.ended = false;
+        }
+      },
+      computed: {
+
+      }
+    });
+  </script>
+</body>
+</html>
