@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VueJS Tutorials</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="vue-app">
+    <h1>{{ greet("afternoon") }}</h1>
+    <p>Name: {{ name }}</p>
+    <p>Job: {{ job }}</p>
+    <p>{{ act() }}</p>
+    <input type="text" v-model:value="name"><br>
+
+    <!-- Binding to an attribute: Notice link is  -->
+    <a v-bind:href="website" target="_blank">YAHOO</a>
+    <p v-html="websiteHTML"></p>
+  </div>
+  <script>
+    new Vue({
+      el: '#vue-app',
+      data: {
+        name: 'Shaun',
+        job: 'Ninja',
+        website: 'www.yahoo.com',
+        websiteHTML: '<a href="https://www.yahoo.com">YAHOO</a>'
+      },
+      methods: {
+        greet: function(time) {
+          return `Good ${time} ${this.name}`
+        },
+        act: function() {
+          return 'I am jumping'
+        }
+      }
+    });
+  </script>
+</body>
+</html>
